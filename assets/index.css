@@ -1,0 +1,121 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: 'Vazirmatn', system-ui, sans-serif;
+}
+
+html {
+  font-family: 'Vazirmatn', system-ui, sans-serif;
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+button, input, textarea, select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--accent, #4f46e5) 30%, transparent);
+  outline-offset: 2px;
+}
+
+@layer components {
+  .field {
+    @apply w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-[15px] text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-[var(--accent)] dark:border-slate-700 dark:bg-slate-800 dark:text-white;
+  }
+
+  .label {
+    @apply mb-2 block text-sm font-bold text-slate-700 dark:text-slate-300;
+  }
+
+  .primary-btn {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl bg-[var(--accent,#4f46e5)] px-5 py-3 font-black text-white transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .secondary-btn {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl border border-slate-200 px-4 py-3 font-bold transition hover:bg-slate-50 dark:border-slate-700 dark:hover:bg-slate-800;
+  }
+
+  .icon-btn {
+    @apply grid h-11 w-11 shrink-0 place-items-center rounded-xl transition hover:bg-slate-100 dark:hover:bg-slate-800;
+  }
+
+  .nav-chip {
+    @apply relative flex min-h-14 flex-col items-center justify-center gap-1 rounded-xl text-xs font-bold text-slate-500 transition hover:bg-slate-50 dark:hover:bg-slate-800;
+  }
+
+  .nav-chip svg {
+    @apply h-5 w-5;
+  }
+
+  .nav-chip.active {
+    @apply bg-indigo-50 text-[var(--accent)] dark:bg-slate-800;
+  }
+
+  .badge {
+    @apply inline-grid min-h-5 min-w-5 shrink-0 place-items-center rounded-full bg-[var(--accent)] px-1.5 text-[11px] font-black text-white;
+  }
+
+  .conversation {
+    @apply mb-2 flex w-full items-center gap-3 rounded-2xl p-3 text-start transition hover:bg-slate-50 dark:hover:bg-slate-800;
+  }
+
+  .conversation.selected {
+    @apply bg-indigo-50 ring-1 ring-indigo-100 dark:bg-slate-800 dark:ring-slate-700;
+  }
+
+  .empty {
+    @apply flex flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-slate-200 p-7 text-center text-slate-500 dark:border-slate-700;
+  }
+
+  .empty svg {
+    @apply mb-2 h-9 w-9 text-slate-300 dark:text-slate-600;
+  }
+
+  .empty b {
+    @apply text-slate-700 dark:text-slate-200;
+  }
+
+  .empty span {
+    @apply text-sm leading-6;
+  }
+
+  .message {
+    @apply max-w-[88%] rounded-2xl px-4 py-2.5 text-[15px] leading-7 shadow-sm sm:max-w-[72%];
+  }
+
+  .message.mine {
+    @apply self-end rounded-bl-md bg-[var(--accent)] text-white;
+  }
+
+  .message.theirs {
+    @apply self-start rounded-br-md border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-800;
+  }
+
+  .setting-toggle {
+    @apply flex min-h-12 items-center justify-center gap-2 rounded-2xl border border-slate-200 p-3 font-bold transition hover:bg-slate-50 dark:border-slate-700 dark:hover:bg-slate-800;
+  }
+
+  .call-btn {
+    @apply grid h-16 w-16 place-items-center rounded-full shadow-xl transition hover:scale-105 disabled:cursor-not-allowed;
+  }
+}
